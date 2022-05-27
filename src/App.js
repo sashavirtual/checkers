@@ -1,23 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import Board from './components/board/Board'
+import Endspiel from './components/endspiel/Endspiel'
 
 function App() {
+  const [end, setEnd] = useState(false)
+  // if (end) {
+  //   return (
+  //     <div className='App'>
+  //       hello, world
+  //     </div>
+  //   )
+  // }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Board setEnd={setEnd} />
     </div>
   );
 }

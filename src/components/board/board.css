@@ -1,0 +1,265 @@
+.chessboard {
+    width: 80%;
+    height: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 800px;
+    width: 800px;
+    margin: 100px;
+    min-width: 800px;
+}
+
+.cellBlack {
+    background-color: rgb(87, 87, 87);
+}
+
+.cellWhite {
+    background-color: rgb(146, 146, 146);
+}
+
+.cell {
+    width: 100px;
+    height: 100px;
+}
+
+.checkerWhite {
+    background: url(../../styles/whiteChecker.png), no-repeat;
+    background-color: rgb(87, 87, 87);
+    background-size: 100px;
+    cursor: pointer;
+}
+
+.checkerBlack {
+    background: url(../../styles/blackChecker.png), no-repeat;
+    background-color: rgb(87, 87, 87);
+    background-size: 100px;
+    cursor: pointer;
+}
+
+.onMove:before {
+    content: '';
+    display: flex;
+    margin: 27px auto;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(255, 250, 91);
+    width: 40px;
+    height: 40px;
+    z-index: 5;
+    position: absolute;
+    margin: 30px;
+    border-radius: 50%;
+    box-shadow: 0 0 15px 5px rgb(255, 250, 91);
+    animation-name: pulsingYellow;
+    animation-iteration-count: infinite;
+    animation-duration: 2s;
+}
+
+@keyframes pulsingYellow {
+    0% {
+        transform: scale(1.1)
+    }
+
+    50% {
+        transform: scale(0.8)
+    }
+
+    100% {
+        transform: scale(1.1);
+    }
+}
+
+.newGame {
+    display: block;
+    font-size: 35px;
+    padding: 12px;
+    color: black;
+    margin: 100px auto 100px;
+    cursor: pointer;
+}
+
+.blocked:before {
+    content: '';
+    z-index: 101;
+    background-color: rgb(107, 107, 107);
+    box-shadow: 0 0 15px 5px rgb(182, 182, 182);
+
+}
+
+
+
+#A1:before {
+    content: '1';
+    color: white;
+    width: 100px;
+    height: 100px;
+    position: relative;
+    font-size: 40px;
+    left: -33%;
+    top: 33%;
+}
+
+#A2:after {
+    content: '2';
+    color: white;
+    width: 100px;
+    height: 100px;
+    position: relative;
+    font-size: 40px;
+    left: -33%;
+    top: 33%;
+}
+
+#A3:after {
+    content: '3';
+    color: white;
+    width: 100px;
+    height: 100px;
+    position: relative;
+    font-size: 40px;
+    left: -33%;
+    top: 33%;
+}
+
+#A4:after {
+    content: '4';
+    color: white;
+    width: 100px;
+    height: 100px;
+    position: relative;
+    font-size: 40px;
+    left: -33%;
+    top: 33%;
+}
+
+#A5:after {
+    content: '5';
+    color: white;
+    width: 100px;
+    height: 100px;
+    position: relative;
+    font-size: 40px;
+    left: -33%;
+    top: 33%;
+}
+
+#A6:after {
+    content: '6';
+    color: white;
+    width: 100px;
+    height: 100px;
+    position: relative;
+    font-size: 40px;
+    left: -33%;
+    top: 33%;
+}
+
+#A7:after {
+    content: '7';
+    color: white;
+    width: 100px;
+    height: 100px;
+    position: relative;
+    font-size: 40px;
+    left: -33%;
+    top: 33%;
+}
+
+#A8:after {
+    content: '8';
+    color: white;
+    width: 100px;
+    height: 100px;
+    position: relative;
+    font-size: 40px;
+    left: -33%;
+    top: 33%;
+}
+
+#A1:after {
+    content: 'A';
+    color: white;
+    width: 100px;
+    height: 100px;
+    position: relative;
+    font-size: 40px;
+    left: 13%;
+    top: 120%;
+}
+
+#B1:after {
+    content: 'B';
+    color: white;
+    width: 100px;
+    height: 100px;
+    position: relative;
+    font-size: 40px;
+    left: 33%;
+    top: 120%;
+}
+
+#C1:after {
+    content: 'C';
+    color: white;
+    width: 100px;
+    height: 100px;
+    position: relative;
+    font-size: 40px;
+    left: 33%;
+    top: 120%;
+}
+
+#D1:after {
+    content: 'D';
+    color: white;
+    width: 100px;
+    height: 100px;
+    position: relative;
+    font-size: 40px;
+    left: 33%;
+    top: 120%;
+}
+
+#E1:after {
+    content: 'E';
+    color: white;
+    width: 100px;
+    height: 100px;
+    position: relative;
+    font-size: 40px;
+    left: 33%;
+    top: 120%;
+}
+
+#F1:after {
+    content: 'F';
+    color: white;
+    width: 100px;
+    height: 100px;
+    position: relative;
+    font-size: 40px;
+    left: 33%;
+    top: 120%;
+}
+
+#G1:after {
+    content: 'G';
+    color: white;
+    width: 100px;
+    height: 100px;
+    position: relative;
+    font-size: 40px;
+    left: 33%;
+    top: 120%;
+}
+
+#H1:after {
+    content: 'H';
+    color: white;
+    width: 100px;
+    height: 100px;
+    position: relative;
+    font-size: 40px;
+    left: 33%;
+    top: 120%;
+}
