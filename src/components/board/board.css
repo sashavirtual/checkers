@@ -36,6 +36,20 @@
     cursor: pointer;
 }
 
+.kingBlack {
+    background: url(../../styles/blackQueen.png), no-repeat;
+    background-color: rgb(87, 87, 87);
+    background-size: 100px;
+    cursor: pointer;
+}
+
+.kingWhite {
+    background: url(../../styles/whiteQueen.png), no-repeat;
+    background-color: rgb(87, 87, 87);
+    background-size: 100px;
+    cursor: pointer;
+}
+
 .onMove:before {
     content: '';
     display: flex;
@@ -50,9 +64,9 @@
     margin: 30px;
     border-radius: 50%;
     box-shadow: 0 0 15px 5px rgb(255, 250, 91);
-    animation-name: pulsingYellow;
+    /* animation-name: pulsingYellow;
     animation-iteration-count: infinite;
-    animation-duration: 2s;
+    animation-duration: 2s; */
 }
 
 @keyframes pulsingYellow {
