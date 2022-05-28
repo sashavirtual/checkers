@@ -82,7 +82,7 @@
     content: '';
     z-index: 101;
     background-color: rgb(107, 107, 107);
-    box-shadow: 0 0 15px 5px rgb(182, 182, 182);
+    box-shadow: 0 0 15px 0 rgb(196, 196, 196);
 
 }
 

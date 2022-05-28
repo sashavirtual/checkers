@@ -26,8 +26,11 @@ function Board({ setEnd }) {
         let filledBlack = ['B8', 'D8', 'F8', 'H8', 'A7', 'C7', 'E7', 'G7', 'B6', 'D6', 'F6', 'H6']
         let filledWhite = ['A1', 'C1', 'E1', 'G1', 'D2', 'B2', 'F2', 'H2', 'A3', 'C3', 'E3', 'G3']
 
-        // filledWhite = ['C3', 'E3', 'E3']
+        // filledWhite = ['B2', 'E3'] на случай проблемы сруба
         // filledBlack = ['B4', 'D4', 'F4', 'D2', 'F2']
+
+        filledBlack = ['B2', 'E3', 'B4'] //A1:before
+        filledWhite = ['G1']
 
         filledBlack.forEach(item => {
             document.getElementById(item).classList.add('checkerBlack')
@@ -41,6 +44,7 @@ function Board({ setEnd }) {
         onMove = false
         prevIndex = undefined //первоначальный индекс шашки, которой сделали ход
         onCapture = false //
+        capture = false
     }
 
     const checkCompulsoryCapture = (color, el) => {
@@ -70,7 +74,7 @@ function Board({ setEnd }) {
                         simpleMove[index] = posCap
                     }
                 })
-                first && ![...first.classList].includes(`checker${color}`) && ![...first.classList].includes(`checker${opposite}`) && onCapture && first.classList.add('blocked')
+                first && ![...first.classList].includes(`checker${color}`) && ![...first.classList].includes(`checker${color}`) && ![...first.classList].includes(`checker${opposite}`) && onCapture && first.classList.add('blocked')
                 second && ![...second.classList].includes(`checker${color}`) && ![...second.classList].includes(`checker${opposite}`) && onCapture && second.classList.add('blocked')
 
 
@@ -126,15 +130,15 @@ function Board({ setEnd }) {
         }
         return onCapture
     }
-    const movePiece = (color, el) => {
+    const movePiece = (color, el, capt) => {
         let opposite = color === 'White' ? 'Black' : 'White';
         checkCompulsoryCapture(color, el)
         //если впервые трогаешь свою шашку
-        if ([...el.classList].includes(`checker${color}`) && !onMove) {
+        if ([...el.classList].includes(`checker${color}`) && !onMove && capt !== 1000) {
             highLighting(color, el.id)
         }
         //если трогаешь уже другую свою шашку
-        else if ([...el.classList].includes(`checker${color}`) && onMove) {
+        else if ([...el.classList].includes(`checker${color}`) && onMove && capt !== 1000) {
             chessBoard.forEach(row => row.forEach(cell => document.querySelector(`#${cell}`) && document.querySelector(`#${cell}`).classList.remove('onMove')))
             highLighting(color, el.id)
             // chessBoard.forEach(row => row.forEach(cell => {
@@ -142,11 +146,14 @@ function Board({ setEnd }) {
             //         document.querySelector(`#${cell}`).classList.remove('onMove')
             //     }
             //      }))
-            console.log('tut', turn)
+            capture = capt === true ? 1000 : false;
+            if (capture === 1000) {
+                movePiece(color, el, capture)
+            }
+
         }
         //если ходишь на пустую клетку или
         else if (onMove && ![...el.classList].includes(`checker${opposite}`) && ![...el.classList].includes(`checker${color}`) && [...el.classList].includes('onMove')) {
-            console.log('i tut', turn)
 
             if (Math.abs(+prevIndex.id[1] - (+el.id[1])) !== 1) {
                 let letter = (letters.indexOf(prevIndex.id[0]) - letters.indexOf(el.id[0])) / 2
@@ -167,18 +174,23 @@ function Board({ setEnd }) {
                 if (Math.abs(+prevIndex.id[1] - (+el.id[1])) !== 1 && highLighting(color, el.id, true)) {
                     onCapture = true
                     onMove = true
-                    turn = !turn
                     capture = true
                     // turn = !turn
-                    movePiece(color, el)
+                    movePiece(color, el, capture)
                 }
+
                 chessBoard.forEach(row => row.forEach(cell => {
                     !onCapture && document.querySelector(`#${cell}`).classList.remove('onMove')
                     !onCapture && document.querySelector(`#${cell}`).classList.remove('blocked')
                 }
                 ))
+                if (!highLighting(color, el.id, true) || Math.abs(+prevIndex.id[1] - (+el.id[1])) === 1) {
+                    turn = !turn
+                    if (capture === 1000) {
+                        capture = false
+                    }
+                }
 
-                turn = !turn
             }
         }
     }
