@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './board.css'
 import { whiteCell, blackCell } from './imports'
 function Board({ setEnd }) {
@@ -287,6 +287,7 @@ function Board({ setEnd }) {
             }
         }
     }
+
     return (
         <div className='chessboard'>
             {

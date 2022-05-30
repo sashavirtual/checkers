@@ -3,19 +3,20 @@ import Board from './components/board/Board'
 import Endspiel from './components/endspiel/Endspiel'
 
 function App() {
-  const [end, setEnd] = useState(false)
-  // if (end) {
-  //   return (
-  //     <div className='App'>
-  //       hello, world
-  //     </div>
-  //   )
-  // }
+  const [firstClick, setFirstClick] = useState(false)
+
   return (
     <div className="App">
-      <Board setEnd={setEnd} />
+      {
+        firstClick ?
+          <Board />
+          :
+          <button className='newGame' onClick={() => setFirstClick(true)}>
+            Start the game!
+          </button>
+
+      }
     </div>
   );
 }
-
 export default App;

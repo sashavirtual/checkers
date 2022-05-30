@@ -9,6 +9,11 @@
     min-width: 800px;
 }
 
+.cell {
+    width: 100px;
+    height: 100px;
+}
+
 .cellBlack {
     background-color: rgb(87, 87, 87);
 }
@@ -17,10 +22,6 @@
     background-color: rgb(146, 146, 146);
 }
 
-.cell {
-    width: 100px;
-    height: 100px;
-}
 
 .checkerWhite {
     background: url(../../styles/whiteChecker.png), no-repeat;
@@ -50,24 +51,27 @@
     cursor: pointer;
 }
 
+
+
 .onMove:before {
     content: '';
-    display: flex;
-    margin: 27px auto;
-    justify-content: center;
-    align-items: center;
+    display: block;
     background-color: rgb(255, 250, 91);
     width: 40px;
     height: 40px;
     z-index: 5;
-    position: absolute;
-    margin: 30px;
+    position: relative;
+    margin: 30% auto;
     border-radius: 50%;
     box-shadow: 0 0 15px 5px rgb(255, 250, 91);
     animation-name: pulsingYellow;
     animation-iteration-count: infinite;
     animation-duration: 2s;
 }
+
+
+
+
 
 @keyframes pulsingYellow {
     0% {
@@ -119,7 +123,7 @@
     width: 100px;
     height: 100px;
     position: relative;
-    font-size: 40px;
+    font-size: 2.5rem;
     left: -33%;
     top: 33%;
 }
@@ -276,4 +280,244 @@
     font-size: 40px;
     left: 33%;
     top: 120%;
+}
+
+@media screen and (max-width:878px) {
+    .chessboard {
+        width: 600px;
+        min-width: 600px;
+    }
+
+    .cell {
+        width: 75px;
+        height: 75px;
+    }
+
+    .checkerBlack {
+        background-size: 75px;
+    }
+
+    .checkerWhite {
+        background-size: 75px;
+    }
+
+    .onMove:before {
+        margin-top: 22px;
+        width: 35px;
+        height: 35px;
+    }
+
+    #A8:after,
+    #A7:after,
+    #A6:after,
+    #A5:after,
+    #A4:after,
+    #A3:after,
+    #A2:after,
+    #A1:before {
+        font-size: 40px;
+        top: 20%;
+    }
+
+    #A1:after {
+        font-size: 40px;
+        top: 120%;
+        left: 6%;
+    }
+
+    #B1:after,
+    #C1:after,
+    #C1:after,
+    #D1:after,
+    #E1:after,
+    #F1:after,
+    #G1:after,
+    #H1:after {
+        font-size: 40px;
+        left: 27%;
+    }
+
+}
+
+
+
+@media screen and (max-width:660px) {
+    .chessboard {
+        width: 500px;
+        min-width: 500px;
+    }
+
+    .cell {
+        width: 62.5px;
+        height: 62.5px;
+    }
+
+    .checkerBlack {
+        background-size: 62.5px;
+    }
+
+    .checkerWhite {
+        background-size: 62.5px;
+    }
+
+    #A8:after,
+    #A7:after,
+    #A6:after,
+    #A5:after,
+    #A4:after,
+    #A3:after,
+    #A2:after {
+        font-size: 30px;
+        top: 20%;
+    }
+
+    #A1:before {
+        font-size: 30px;
+        top: 10%;
+    }
+
+    #A1:after {
+        font-size: 30px;
+        top: 120%;
+        left: 6%;
+    }
+
+    #B1:after,
+    #C1:after,
+    #C1:after,
+    #D1:after,
+    #E1:after,
+    #F1:after,
+    #G1:after,
+    #H1:after {
+        font-size: 30px;
+        left: 27%;
+    }
+
+    .onMove:before {
+        margin-top: 21px;
+        width: 24px;
+        height: 24px;
+    }
+
+}
+
+@media (max-width:540px) {
+    .chessboard {
+        width: 400px;
+        min-width: 400px;
+    }
+
+    .cell {
+        width: 50px;
+        height: 50px;
+    }
+
+    .checkerBlack {
+        background-size: 50px;
+    }
+
+    .checkerWhite {
+        background-size: 50px;
+    }
+
+    #A8:after,
+    #A7:after,
+    #A6:after,
+    #A5:after,
+    #A4:after,
+    #A3:after,
+    #A2:after {
+        font-size: 25px;
+        top: 23%;
+    }
+
+    #A1:before {
+        font-size: 25px;
+        top: 23%;
+    }
+
+    #A1:after {
+        font-size: 25px;
+        top: 120%;
+        left: 6%;
+    }
+
+    #B1:after,
+    #C1:after,
+    #C1:after,
+    #D1:after,
+    #E1:after,
+    #F1:after,
+    #G1:after,
+    #H1:after {
+        font-size: 25px;
+        left: 27%;
+    }
+
+    .onMove:before {
+        margin-top: 15px;
+        width: 21px;
+        height: 21px;
+    }
+}
+
+@media screen and (max-width:430px) {
+    .chessboard {
+        width: 320px;
+        min-width: 320px;
+    }
+
+    .cell {
+        width: 40px;
+        height: 40px;
+    }
+
+    .checkerBlack {
+        background-size: 40px;
+    }
+
+    .checkerWhite {
+        background-size: 40px;
+    }
+
+    #A8:after,
+    #A7:after,
+    #A6:after,
+    #A5:after,
+    #A4:after,
+    #A3:after,
+    #A2:after {
+        font-size: 20px;
+        top: 23%;
+    }
+
+    #A1:before {
+        font-size: 20px;
+        top: 23%;
+    }
+
+    #A1:after {
+        font-size: 20px;
+        top: 120%;
+        left: 6%;
+    }
+
+    #B1:after,
+    #C1:after,
+    #C1:after,
+    #D1:after,
+    #E1:after,
+    #F1:after,
+    #G1:after,
+    #H1:after {
+        font-size: 20px;
+        left: 27%;
+    }
+
+    .onMove:before {
+        margin-top: 11px;
+        width: 19px;
+        height: 19px;
+    }
 }
