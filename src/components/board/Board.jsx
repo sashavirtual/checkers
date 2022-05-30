@@ -237,7 +237,7 @@ function Board({ setEnd }) {
                     let dirLetter = (letters.indexOf(prevIndex.id[0]) - letters.indexOf(el.id[0])) > 0 ? -1 : 1
                     let dirNum = (+prevIndex.id[1] - (+el.id[1])) > 0 ? 1 : -1
                     for (let i = 1; i < temp; i++) {
-                        //prevIndex.id===F8; el.id=B4
+                        //prevIndex.id===F8; el.id=B4???
                         document.querySelector(`#${letters[letters.indexOf(prevIndex.id[0]) + i * dirLetter]}${+prevIndex.id[1] - i * dirNum}`).classList.remove(`checker${opposite}`)
                         document.querySelector(`#${letters[letters.indexOf(prevIndex.id[0]) + i * dirLetter]}${+prevIndex.id[1] - i * dirNum}`).classList.remove(`king${opposite}`)
                     }
