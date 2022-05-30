@@ -38,8 +38,8 @@ function Board({ setEnd }) {
         // filledBlack = ['F6', 'E3', 'F2']
         // filledWhite = ['D4', 'C7']
 
-        // filledWhite = ['A1', 'A3', 'C1', 'C3', 'B2', 'E1', 'F2', 'G1', 'H6', 'D2']
-        // filledBlack = ['B6', 'A7', 'D8', 'C7', 'B8', 'D6', 'E7', 'G7']
+        filledWhite = ['A1', 'A3', 'C1', 'C3', 'B2', 'E1', 'F2', 'G1', 'H6', 'D2']
+        filledBlack = ['B6', 'A7', 'D8', 'C7', 'B8', 'D6', 'E7', 'G7']
 
 
         filledBlack.forEach(item => {
@@ -205,8 +205,8 @@ function Board({ setEnd }) {
         return onCapture
     }
     const movePiece = (color, el, capt) => {
+        console.log(capt)
         let opposite = color === 'White' ? 'Black' : 'White';
-        console.log([capt, onCapture])
         checkCompulsoryCapture(color, el)
         //если впервые трогаешь свою шашку
         if ([...el.classList].includes(`checker${color}`) && !onMove && capt !== 1000) {
@@ -236,7 +236,6 @@ function Board({ setEnd }) {
                     let temp = Math.abs(+prevIndex.id[1] - (+el.id[1]))
                     let dirLetter = (letters.indexOf(prevIndex.id[0]) - letters.indexOf(el.id[0])) > 0 ? -1 : 1
                     let dirNum = (+prevIndex.id[1] - (+el.id[1])) > 0 ? 1 : -1
-                    let prevI
                     for (let i = 1; i < temp; i++) {
                         //prevIndex.id===F8; el.id=B4
                         document.querySelector(`#${letters[letters.indexOf(prevIndex.id[0]) + i * dirLetter]}${+prevIndex.id[1] - i * dirNum}`).classList.remove(`checker${opposite}`)
@@ -270,7 +269,6 @@ function Board({ setEnd }) {
                     onCapture = true
                     onMove = true
                     capture = true
-                    console.log('im here marrrio')
                     movePiece(color, el, capture)
                 }
 
