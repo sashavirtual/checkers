@@ -39,8 +39,8 @@ function Board({ firstClick, setFirstClick }) {
         // filledBlack = ['F6', 'E3', 'F2']
         // filledWhite = ['D4', 'C7']
 
-        filledWhite = ['A1', 'A3', 'C1', 'C3', 'B2', 'E1', 'F2', 'G1', 'H6', 'D2']
-        filledBlack = ['B6', 'A7', 'D8', 'C7', 'B8', 'D6', 'E7', 'G7']
+        // filledWhite = ['A1', 'A3', 'C1', 'C3', 'B2', 'E1', 'F2', 'G1', 'H6', 'D2']
+        // filledBlack = ['B6', 'A7', 'D8', 'C7', 'B8', 'D6', 'E7', 'G7']
 
 
         filledBlack.forEach(item => {

@@ -10,8 +10,8 @@
     flex-wrap: wrap;
     aspect-ratio: 1/1;
     margin-top: 50px;
-    max-width: 60vh;
-    min-width: 60vh;
+    max-width: 45vh;
+    min-width: 45vh;
 }
 
 .newGameDiv {
@@ -351,6 +351,11 @@
 
 @media screen and (max-width:878px) {
     .chessboard {
+        max-width: 85vw;
+        min-width: 85vw;
+    }
+
+    .chessboard {
         width: 90%;
     }
 
@@ -462,6 +467,9 @@
 }
 
 @media (max-width:540px) {
+    .newGame {
+        font-size: 20px;
+    }
 
     #A8:after,
     #A7:after,
