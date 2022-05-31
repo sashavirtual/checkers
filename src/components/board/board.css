@@ -10,8 +10,8 @@
     flex-wrap: wrap;
     aspect-ratio: 1/1;
     margin-top: 50px;
-    max-width: 45vh;
-    min-width: 45vh;
+    max-width: 60vh;
+    min-width: 60vh;
 }
 
 .newGameDiv {
@@ -105,7 +105,7 @@
     height: 27px;
     z-index: 5;
     position: relative;
-    margin: 33% auto;
+    margin: 30% auto;
     border-radius: 50%;
     box-shadow: 0 0 15px 5px rgb(255, 250, 91);
     animation-name: pulsingYellow;
@@ -382,6 +382,7 @@
     }
 
     .onMove:before {
+        margin: 35% auto;
         width: 25px;
         height: 25px;
         display: flex;
@@ -508,6 +509,7 @@
     .onMove:before {
         width: 21px;
         height: 21px;
+        margin: 31% auto;
     }
 }
 
@@ -554,5 +556,6 @@
     .onMove:before {
         width: 19px;
         height: 19px;
+        margin: 26% auto;
     }
 }
