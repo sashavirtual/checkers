@@ -7,6 +7,10 @@
 
 body {
   background-color: rgb(24, 24, 24);
+  width: 1000px;
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
 }
 
 .App {
