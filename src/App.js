@@ -7,15 +7,7 @@ function App() {
 
   return (
     <div className="App">
-      {
-        firstClick ?
-          <Board />
-          :
-          <button className='newGame' onClick={() => setFirstClick(true)}>
-            Start the game!
-          </button>
-
-      }
+      <Board setFirstClick={setFirstClick} firstClick={firstClick} />
     </div>
   );
 }

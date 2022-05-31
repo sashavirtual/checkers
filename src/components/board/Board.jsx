@@ -1,17 +1,18 @@
 import React, { useState } from 'react'
 import './board.css'
-import { whiteCell, blackCell } from './imports'
-function Board({ setEnd }) {
+import { whiteCell, blackCell, whiteQueen, whiteChecker, blackQueen, blackChecker, checkerPlayers } from './imports'
+function Board({ firstClick, setFirstClick }) {
+    const [chessCount, setChessCount] = React.useState({
+        "White": 0,
+        "Black": 0
+    })
     let chessBoard = []
     let turn = true; //true - белые, false - черные
     let onMove = false //при первом нажатии на шашку ходящей стороны становится true
     let prevIndex, onCapture
     const boardArr = [[1, 0, 1, 0, 1, 0, 1, 0], [0, 1, 0, 1, 0, 1, 0, 1]]
     let letters = '•ABCDEFGH'
-    const [chessCount, setChessCount] = React.useState({
-        "White": 0,
-        "Black": 0
-    })
+
     let capture = false
     const newGame = () => {
         //очищается доска, заполняются определённые клетки с черными и белыми шашками, действия с предыдущей игры приводятся к дефолтным значениям
@@ -38,8 +39,8 @@ function Board({ setEnd }) {
         // filledBlack = ['F6', 'E3', 'F2']
         // filledWhite = ['D4', 'C7']
 
-        // filledWhite = ['A1', 'A3', 'C1', 'C3', 'B2', 'E1', 'F2', 'G1', 'H6', 'D2']
-        // filledBlack = ['B6', 'A7', 'D8', 'C7', 'B8', 'D6', 'E7', 'G7']
+        filledWhite = ['A1', 'A3', 'C1', 'C3', 'B2', 'E1', 'F2', 'G1', 'H6', 'D2']
+        filledBlack = ['B6', 'A7', 'D8', 'C7', 'B8', 'D6', 'E7', 'G7']
 
 
         filledBlack.forEach(item => {
@@ -205,7 +206,6 @@ function Board({ setEnd }) {
         return onCapture
     }
     const movePiece = (color, el, capt) => {
-        console.log(capt)
         let opposite = color === 'White' ? 'Black' : 'White';
         checkCompulsoryCapture(color, el)
         //если впервые трогаешь свою шашку
@@ -289,28 +289,39 @@ function Board({ setEnd }) {
     }
 
     return (
-        <div className='chessboard'>
-            {
-                [...new Array(4)].map((item, cycle) => boardArr.map((row, pair) => row.map((cell, index) => {
-                    chessBoard.push(`${letters[index + 1]}${9 - ((cycle * 2) + 1 + pair)}`)
-                    if (chessBoard.length === 64) {
-                        for (let i = 0; i < 8; i++) {
-                            chessBoard.push(chessBoard.splice(0, 8))
+        <>
+            <div className='chessboard'>
+                {
+                    firstClick &&
+                    [...new Array(4)].map((item, cycle) => boardArr.map((row, pair) => row.map((cell, index) => {
+                        chessBoard.push(`${letters[index + 1]}${9 - ((cycle * 2) + 1 + pair)}`)
+                        if (chessBoard.length === 64) {
+                            for (let i = 0; i < 8; i++) {
+                                chessBoard.push(chessBoard.splice(0, 8))
+                            }
                         }
-                    }
-                    let temp = `${letters[index + 1]}${9 - ((cycle * 2) + 1 + pair)}`
-                    return (cell ?
-                        <div className="cell cellWhite" id={temp} key={temp} src={whiteCell} />
-                        :
-                        <div className="cell cellBlack" id={temp} key={temp} src={blackCell} onClick={(e) => movePiece(turn ? 'White' : 'Black', e.target, capture)} />
+                        let temp = `${letters[index + 1]}${9 - ((cycle * 2) + 1 + pair)}`
+                        let filledBlack = ['B8', 'D8', 'F8', 'H8', 'A7', 'C7', 'E7', 'G7', 'B6', 'D6', 'F6', 'H6']
+                        let filledWhite = ['A1', 'C1', 'E1', 'G1', 'D2', 'B2', 'F2', 'H2', 'A3', 'C3', 'E3', 'G3']
+                        return (cell ?
+                            <div className="cell cellWhite" id={temp} key={temp} src={whiteCell} />
+                            :
+                            <div className={`cell cellBlack ${filledBlack.includes(temp) ? 'checkerBlack' : filledWhite.includes(temp) ? 'checkerWhite' : ''}`} id={temp} key={temp} src={blackCell} onClick={(e) => movePiece(turn ? 'White' : 'Black', e.target, capture)} />
+                        )
+                    }))
                     )
-                }))
-                )
 
-            }
-            <button className="newGame" onClick={newGame}>Start new game</button>
 
-        </div>
+                }
+                <div className='newGameDiv'>
+
+                    {!firstClick && [...new Array(1)].map(item => <div className='checkerPlayers'><img src={checkerPlayers} /></div>)}
+                    <button className="newGame" onClick={() => firstClick ? newGame() : setFirstClick(true)}>Start new game</button>
+                </div>
+
+            </div>
+        </>
+
     )
 }
 
