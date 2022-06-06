@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/checkers/static/css/main.f37e8592.css",
-    "main.js": "/checkers/static/js/main.303a2360.js",
+    "main.css": "/checkers/static/css/main.6b61b777.css",
+    "main.js": "/checkers/static/js/main.97e005f7.js",
     "static/media/checkerPlayers.png": "/checkers/static/media/checkerPlayers.465d17c52792b0be8e9d.png",
     "static/media/whiteCell.png": "/checkers/static/media/whiteCell.2fc65e8835199efbd6ed.png",
     "static/media/blackCell.png": "/checkers/static/media/blackCell.29b4cc79d6bd140583b6.png",
     "index.html": "/checkers/index.html",
-    "main.f37e8592.css.map": "/checkers/static/css/main.f37e8592.css.map",
-    "main.303a2360.js.map": "/checkers/static/js/main.303a2360.js.map"
+    "main.6b61b777.css.map": "/checkers/static/css/main.6b61b777.css.map",
+    "main.97e005f7.js.map": "/checkers/static/js/main.97e005f7.js.map"
   },
   "entrypoints": [
-    "static/css/main.f37e8592.css",
-    "static/js/main.303a2360.js"
+    "static/css/main.6b61b777.css",
+    "static/js/main.97e005f7.js"
   ]
 }
