@@ -39,8 +39,8 @@ function Board({ firstClick, setFirstClick }) {
         // filledBlack = ['F6', 'E3', 'F2']
         // filledWhite = ['D4', 'C7']
 
-        // filledWhite = ['A1', 'A3', 'C1', 'C3', 'B2', 'E1', 'F2', 'G1', 'H6', 'D2']
-        // filledBlack = ['B6', 'A7', 'D8', 'C7', 'B8', 'D6', 'E7', 'G7']
+        filledWhite = ['A1', 'A3', 'C1', 'C3', 'B2', 'E1', 'F2', 'G1', 'H6', 'D2']
+        filledBlack = ['B6', 'A7', 'D8', 'C7', 'B8', 'D6', 'E7', 'G7']
 
 
         filledBlack.forEach(item => {
@@ -57,7 +57,7 @@ function Board({ firstClick, setFirstClick }) {
         capture = false
     }
     const kingHighLighting = (color, el, check = false) => {
-        let first, second, third, fourth, blocked = false, doubleBlocked = false, toCapture = false
+        let first, second, third, fourth, doubleBlocked = false, toCapture = false
         let arrToCapture = [false, false, false, false]
         let toCaptureCoordinates = [false, false, false, false]
         let opposite = color === 'White' ? 'Black' : 'White';
@@ -79,8 +79,13 @@ function Board({ firstClick, setFirstClick }) {
                 doubleBlocked = false
             }
             if (!doubleBlocked) {
-                if (![...cell.classList].includes(`checker${opposite}`) && ![...cell.classList].includes(`checker${color}`)) {
-                    !check && cell.classList.add('onMove')
+                if (!check) {
+                    if (![...cell.classList].includes(`checker${opposite}`) && ![...cell.classList].includes(`checker${color}`)) {
+                        !check && cell.classList.add('onMove')
+                    }
+                }
+                if ([...cell.classList].includes(`checker${color}`)) {
+                    doubleBlocked = true
                 }
                 if (direction[cellInd + 1]) {
                     if ([...cell.classList].includes(`checker${opposite}`) || [...cell.classList].includes(`checker${color}`)) {
@@ -89,6 +94,7 @@ function Board({ firstClick, setFirstClick }) {
                         }
                     }
                 }
+
 
                 if ([...cell.classList].includes(`checker${opposite}`)) {
                     if (direction[cellInd + 1] && ![...direction[cellInd + 1].classList].includes(`checker${opposite}`) && ![...direction[cellInd + 1].classList].includes(`checker${color}`)) {
@@ -100,9 +106,11 @@ function Board({ firstClick, setFirstClick }) {
             }
         }))
         // блокирует клетки рядов в которых нельзя рубить
-        possibleMoves.forEach((direction, directionInd) => !arrToCapture[directionInd] && direction.forEach((cell, cellInd) => {
-            cell.classList.add('blocked')
-        }))
+        if (!check) {
+            possibleMoves.forEach((direction, directionInd) => !arrToCapture[directionInd] && direction.forEach((cell, cellInd) => {
+                cell.classList.add('blocked')
+            }))
+        }
         //блокирует клетки до шашки, которая должна быть срублена
         let isMentioned = false
         possibleMoves.forEach((direction, directionInd) => arrToCapture[directionInd] && direction.forEach((cell, cellInd) => {
@@ -111,11 +119,16 @@ function Board({ firstClick, setFirstClick }) {
                 isMentioned = true
             }
             if (!isMentioned) {
-                cell.classList.add('blocked')
+                if (!check) {
+                    cell.classList.add('blocked')
+                }
             }
         }))
-        !onCapture && chessBoard.forEach(row => row.forEach(cell => document.querySelector(`#${cell}`) && document.querySelector(`#${cell}`).classList.remove('blocked')));
-        prevIndex = document.querySelector(`#${el.id}`)
+        if (!check) {
+            !onCapture && chessBoard.forEach(row => row.forEach(cell => document.querySelector(`#${cell}`) && document.querySelector(`#${cell}`).classList.remove('blocked')));
+            prevIndex = document.querySelector(`#${el.id}`)
+        }
+        return arrToCapture.includes(true)
     }
 
     const checkCompulsoryCapture = (color, el) => {
@@ -123,8 +136,16 @@ function Board({ firstClick, setFirstClick }) {
         chessBoard.forEach(row => row.forEach(cell => {
             if (document.querySelector(`#${cell}`) && [...document.querySelector(`#${cell}`).classList].includes(`checker${color}`)) {
                 if ([...document.querySelector(`#${cell}`).classList].includes(`king${color}`)) {
-                    // kingHighLighting(color, el, true)
-                } else {
+                    let element = document.querySelector(`#${cell}`)
+                    if (kingHighLighting(color, element, true) === true) {
+                        capture = 1000
+                        console.log('khl to capture')
+                    }
+                    else {
+                        console.log('khl not to capture')
+                    }
+                }
+                else {
                     let first, second, third, fourth, possibleCapture, possibleCapture2, possibleCapture3, possibleCapture4
                     let action = color === 'White' ? 1 : -1
                     first = document.querySelector(`#${letters[letters.indexOf(cell[0]) + 1]}${+cell[1] + action}`);
@@ -162,7 +183,6 @@ function Board({ firstClick, setFirstClick }) {
         ))
     }
     const highLighting = (color, id, check = false) => {
-
         let opposite = color === 'White' ? 'Black' : 'White';
         // подсвечиваются клетки обычных шашек без требования срубить, возвращается массив с подсвеченными Id
         let first, second, third, fourth, possibleCapture, possibleCapture2, possibleCapture3, possibleCapture4, action = color === 'White' ? 1 : -1
@@ -206,6 +226,7 @@ function Board({ firstClick, setFirstClick }) {
         return onCapture
     }
     const movePiece = (color, el, capt) => {
+        console.log(capt, 'capture')
         let opposite = color === 'White' ? 'Black' : 'White';
         checkCompulsoryCapture(color, el)
         //если впервые трогаешь свою шашку
@@ -247,7 +268,6 @@ function Board({ firstClick, setFirstClick }) {
                 document.querySelector(`#${letters[letters.indexOf(prevIndex.id[0]) - letter]}${+prevIndex.id[1] - num}`).classList.remove(`checker${opposite}`)
                 document.querySelector(`#${letters[letters.indexOf(prevIndex.id[0]) - letter]}${+prevIndex.id[1] - num}`).classList.remove(`king${opposite}`)
                 el.classList.remove('blocked')
-                console.log('do you get here?')
             }
             if (![...el.classList].includes('blocked')) {
                 if (el.id[1] === '8' && color === 'White') {

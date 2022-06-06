@@ -160,6 +160,7 @@
     cursor: pointer;
     justify-content: center;
     align-items: center;
+    z-index: 111;
 }
 
 .blocked:before {
