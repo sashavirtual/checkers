@@ -166,7 +166,7 @@
 .blocked:before {
     content: '';
     z-index: 101;
-    background-color: rgb(107, 107, 107);
+    background-color: rgb(119, 119, 119);
     box-shadow: 0 0 15px 0 rgb(196, 196, 196);
 
 }
