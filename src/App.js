@@ -1,21 +1,13 @@
 import { useState } from 'react';
 import Board from './components/board/Board'
-import Endspiel from './components/endspiel/Endspiel'
 
 function App() {
-  const [end, setEnd] = useState(false)
-  // if (end) {
-  //   return (
-  //     <div className='App'>
-  //       hello, world
-  //     </div>
-  //   )
-  // }
+  const [firstClick, setFirstClick] = useState(false)
+
   return (
     <div className="App">
-      <Board setEnd={setEnd} />
+      <Board setFirstClick={setFirstClick} firstClick={firstClick} />
     </div>
   );
 }
-
 export default App;

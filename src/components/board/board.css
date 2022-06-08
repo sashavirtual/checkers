@@ -1,12 +1,61 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+}
+
 .chessboard {
-    width: 80%;
-    height: 80%;
     display: flex;
     flex-wrap: wrap;
-    max-width: 800px;
-    width: 800px;
-    margin: 100px;
-    min-width: 800px;
+    aspect-ratio: 1/1;
+    margin-top: 50px;
+    max-width: 60vh;
+    min-width: 60vh;
+}
+
+.newGameDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.checkerPlayers {
+    display: flex;
+    flex-direction: column;
+    height: 400px;
+    width: 500px;
+    margin: 100px auto 0px;
+    transition: 2s;
+    animation-name: players;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+}
+
+.checkerPlayers img {
+    width: 77vw;
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
+    aspect-ratio: 6/5;
+}
+
+@keyframes players {
+    0% {}
+
+    50% {
+        transform: translateY(-15px);
+
+    }
+
+    100% {}
+}
+
+.cell {
+    width: calc(60vh/8);
+    height: calc(60vh/8);
 }
 
 .cellBlack {
@@ -17,57 +66,76 @@
     background-color: rgb(146, 146, 146);
 }
 
-.cell {
-    width: 100px;
-    height: 100px;
-}
 
 .checkerWhite {
     background: url(../../styles/whiteChecker.png), no-repeat;
     background-color: rgb(87, 87, 87);
-    background-size: 100px;
+    background-size: 100%;
     cursor: pointer;
 }
 
 .checkerBlack {
     background: url(../../styles/blackChecker.png), no-repeat;
     background-color: rgb(87, 87, 87);
-    background-size: 100px;
+    background-size: 100%;
     cursor: pointer;
 }
 
 .kingBlack {
     background: url(../../styles/blackQueen.png), no-repeat;
     background-color: rgb(87, 87, 87);
-    background-size: 100px;
+    background-size: 100%;
     cursor: pointer;
 }
 
 .kingWhite {
     background: url(../../styles/whiteQueen.png), no-repeat;
     background-color: rgb(87, 87, 87);
-    background-size: 100px;
+    background-size: 100%;
     cursor: pointer;
 }
 
+
+
 .onMove:before {
     content: '';
-    display: flex;
-    margin: 27px auto;
-    justify-content: center;
-    align-items: center;
+    display: block;
     background-color: rgb(255, 250, 91);
-    width: 40px;
-    height: 40px;
+    width: 27px;
+    height: 27px;
     z-index: 5;
-    position: absolute;
-    margin: 30px;
+    position: relative;
+    margin: 30% auto;
     border-radius: 50%;
     box-shadow: 0 0 15px 5px rgb(255, 250, 91);
-    /* animation-name: pulsingYellow;
+    animation-name: pulsingYellow;
     animation-iteration-count: infinite;
-    animation-duration: 2s; */
+    animation-duration: 2s;
 }
+
+#A1.onMove:after,
+#B1.onMove:after,
+#C1.onMove:after,
+#D1.onMove:after,
+#E1.onMove:after,
+#F1.onMove:after,
+#G1.onMove:after,
+#H1.onMove:after {
+    top: calc(60vh/75);
+}
+
+#A1.onMove:after,
+#A2.onMove:after,
+#A3.onMove:after,
+#A4.onMove:after,
+#A5.onMove:after,
+#A6.onMove:after,
+#A7.onMove:after,
+#A8.onMove:after {
+    top: -6.5vh;
+}
+
+
 
 @keyframes pulsingYellow {
     0% {
@@ -84,12 +152,15 @@
 }
 
 .newGame {
-    display: block;
+    display: flex;
     font-size: 35px;
     padding: 12px;
+    margin-top: 30%;
     color: black;
-    margin: 100px auto 100px;
     cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    z-index: 111;
 }
 
 .blocked:before {
@@ -108,9 +179,9 @@
     width: 100px;
     height: 100px;
     position: relative;
-    font-size: 40px;
-    left: -33%;
-    top: 33%;
+    font-size: calc(80vh/16);
+    left: -53%;
+    top: 15%;
 }
 
 #A2:after {
@@ -119,9 +190,9 @@
     width: 100px;
     height: 100px;
     position: relative;
-    font-size: 40px;
-    left: -33%;
-    top: 33%;
+    font-size: calc(80vh/16);
+    left: -53%;
+    top: 15%;
 }
 
 #A3:after {
@@ -130,9 +201,9 @@
     width: 100px;
     height: 100px;
     position: relative;
-    font-size: 40px;
-    left: -33%;
-    top: 33%;
+    font-size: calc(80vh/16);
+    left: -53%;
+    top: 15%;
 }
 
 #A4:after {
@@ -141,9 +212,9 @@
     width: 100px;
     height: 100px;
     position: relative;
-    font-size: 40px;
-    left: -33%;
-    top: 33%;
+    font-size: calc(80vh/16);
+    left: -53%;
+    top: 15%;
 }
 
 #A5:after {
@@ -152,10 +223,11 @@
     width: 100px;
     height: 100px;
     position: relative;
-    font-size: 40px;
-    left: -33%;
-    top: 33%;
+    font-size: calc(80vh/16);
+    left: -53%;
+    top: 15%;
 }
+
 
 #A6:after {
     content: '6';
@@ -163,9 +235,9 @@
     width: 100px;
     height: 100px;
     position: relative;
-    font-size: 40px;
-    left: -33%;
-    top: 33%;
+    font-size: calc(80vh/16);
+    left: -53%;
+    top: 15%;
 }
 
 #A7:after {
@@ -174,9 +246,9 @@
     width: 100px;
     height: 100px;
     position: relative;
-    font-size: 40px;
-    left: -33%;
-    top: 33%;
+    font-size: calc(80vh/16);
+    left: -53%;
+    top: 15%;
 }
 
 #A8:after {
@@ -185,9 +257,9 @@
     width: 100px;
     height: 100px;
     position: relative;
-    font-size: 40px;
-    left: -33%;
-    top: 33%;
+    font-size: calc(80vh/16);
+    left: -53%;
+    top: 15%;
 }
 
 #A1:after {
@@ -196,9 +268,9 @@
     width: 100px;
     height: 100px;
     position: relative;
-    font-size: 40px;
-    left: 13%;
-    top: 120%;
+    font-size: calc(80vh/20);
+    left: 0;
+    top: 108%;
 }
 
 #B1:after {
@@ -207,7 +279,7 @@
     width: 100px;
     height: 100px;
     position: relative;
-    font-size: 40px;
+    font-size: calc(80vh/20);
     left: 33%;
     top: 120%;
 }
@@ -218,7 +290,7 @@
     width: 100px;
     height: 100px;
     position: relative;
-    font-size: 40px;
+    font-size: calc(80vh/20);
     left: 33%;
     top: 120%;
 }
@@ -229,7 +301,7 @@
     width: 100px;
     height: 100px;
     position: relative;
-    font-size: 40px;
+    font-size: calc(80vh/20);
     left: 33%;
     top: 120%;
 }
@@ -240,7 +312,7 @@
     width: 100px;
     height: 100px;
     position: relative;
-    font-size: 40px;
+    font-size: calc(80vh/20);
     left: 33%;
     top: 120%;
 }
@@ -251,7 +323,7 @@
     width: 100px;
     height: 100px;
     position: relative;
-    font-size: 40px;
+    font-size: calc(80vh/20);
     left: 33%;
     top: 120%;
 }
@@ -262,7 +334,7 @@
     width: 100px;
     height: 100px;
     position: relative;
-    font-size: 40px;
+    font-size: calc(80vh/20);
     left: 33%;
     top: 120%;
 }
@@ -273,7 +345,218 @@
     width: 100px;
     height: 100px;
     position: relative;
-    font-size: 40px;
+    font-size: calc(80vh/20);
     left: 33%;
     top: 120%;
+}
+
+@media screen and (max-width:878px) {
+    .chessboard {
+        max-width: 85vw;
+        min-width: 85vw;
+    }
+
+    .chessboard {
+        width: 90%;
+    }
+
+    .newGameDiv {
+        max-width: 100%;
+    }
+
+    .checkerPlayers {
+        max-width: 100%;
+    }
+
+    .cell {
+        width: calc(100%/8);
+        height: calc(100%/8);
+    }
+
+
+    .checkerBlack {
+        background-size: 100%;
+    }
+
+    .checkerWhite {
+        background-size: 100%;
+    }
+
+    .onMove:before {
+        margin: 35% auto;
+        width: 25px;
+        height: 25px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #A8:after,
+    #A7:after,
+    #A6:after,
+    #A5:after,
+    #A4:after,
+    #A3:after,
+    #A2:after,
+    #A1:before {
+        font-size: 40px;
+        top: 20%;
+    }
+
+    #A1:after {
+        font-size: 40px;
+        top: 120%;
+        left: 6%;
+    }
+
+    #B1:after,
+    #C1:after,
+    #C1:after,
+    #D1:after,
+    #E1:after,
+    #F1:after,
+    #G1:after,
+    #H1:after {
+        font-size: 40px;
+        left: 27%;
+    }
+
+}
+
+
+
+@media screen and (max-width:660px) {
+
+    #A8:after,
+    #A7:after,
+    #A6:after,
+    #A5:after,
+    #A4:after,
+    #A3:after,
+    #A2:after {
+        font-size: 30px;
+        top: 20%;
+    }
+
+    #A1:before {
+        font-size: 30px;
+        top: 10%;
+    }
+
+    #A1:after {
+        font-size: 30px;
+        top: 120%;
+        left: 6%;
+    }
+
+    #B1:after,
+    #C1:after,
+    #C1:after,
+    #D1:after,
+    #E1:after,
+    #F1:after,
+    #G1:after,
+    #H1:after {
+        font-size: 30px;
+        left: 27%;
+    }
+
+    .onMove:before {
+        width: 17px;
+        height: 17px;
+    }
+
+}
+
+@media (max-width:540px) {
+    .newGame {
+        font-size: 20px;
+    }
+
+    #A8:after,
+    #A7:after,
+    #A6:after,
+    #A5:after,
+    #A4:after,
+    #A3:after,
+    #A2:after {
+        font-size: 25px;
+        top: 23%;
+    }
+
+    #A1:before {
+        font-size: 25px;
+        top: 23%;
+    }
+
+    #A1:after {
+        font-size: 25px;
+        top: 120%;
+        left: 6%;
+    }
+
+    #B1:after,
+    #C1:after,
+    #C1:after,
+    #D1:after,
+    #E1:after,
+    #F1:after,
+    #G1:after,
+    #H1:after {
+        font-size: 25px;
+        left: 27%;
+    }
+
+    .onMove:before {
+        width: 21px;
+        height: 21px;
+        margin: 31% auto;
+    }
+}
+
+@media screen and (max-width:430px) {
+
+    .checkerPlayers {
+        margin: 80px auto -140px;
+    }
+
+    #A8:after,
+    #A7:after,
+    #A6:after,
+    #A5:after,
+    #A4:after,
+    #A3:after,
+    #A2:after {
+        font-size: 20px;
+        top: 23%;
+    }
+
+    #A1:before {
+        font-size: 20px;
+        top: 23%;
+    }
+
+    #A1:after {
+        font-size: 20px;
+        top: 120%;
+        left: 6%;
+    }
+
+    #B1:after,
+    #C1:after,
+    #C1:after,
+    #D1:after,
+    #E1:after,
+    #F1:after,
+    #G1:after,
+    #H1:after {
+        font-size: 20px;
+        left: 27%;
+    }
+
+    .onMove:before {
+        width: 19px;
+        height: 19px;
+        margin: 26% auto;
+    }
 }
